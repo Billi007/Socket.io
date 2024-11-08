@@ -8,7 +8,7 @@ const socket = io.connect("http://localhost:8000");    //better approach with ke
 function App() {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
-  const username = nanoid()
+  const [socketId, setSocketId] = useState("");
   
   const sendChat = (e) => {
     e.preventDefault();
@@ -18,6 +18,7 @@ function App() {
 
   useEffect(() => {
     socket.on("chat", (data) => {
+      setSocketId(socket.id)
       setChat([...chat, data]);
     })
   })
@@ -27,13 +28,17 @@ function App() {
      <div className="app">
       <header className="app-header">
         <h1>Chatty App</h1>
-      </header>
+        <h5>Id:- {socket.id}</h5>
 
-      {chat.map((data ,id) => (
-       <p key={id}>{data.message}</p>
-      ))}
 
       <form onSubmit={sendChat}>
+      <input 
+        type="text" 
+        name="id" 
+        placeholder='enter Id' 
+        value={socketId}
+        onChange={e => setSocketId(e.target.value)}
+        />
         <input 
         type="text" 
         name="chat" 
@@ -43,6 +48,13 @@ function App() {
         />
         <button type='submit'>Send</button>
       </form>
+
+      {chat.map((data ,id) => {
+        return (
+          <p key={id}><span>{data.message}</span>  </p>
+        )
+      })}
+        </header>
      </div>
     </>
   )

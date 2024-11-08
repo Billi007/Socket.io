@@ -20,11 +20,11 @@ app.use(
  }));
 
 io.on("connection", (socket) => {
-    console.log("User connected");
+    console.log("User connected", socket.id);
 
     socket.on("chat", (data) => {
-        io.emit("chat", "Hello from the server");
-        console.log("Data", data);
+        io.emit("chat", data);
+        console.log(data);
     })
 })
 

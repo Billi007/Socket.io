@@ -36,6 +36,9 @@ h1 {
   line-height: 1.1;
   color: white;
 }
+h5{
+  color: white;
+}
 
 button {
   border-radius: 3px;
@@ -72,6 +75,14 @@ input{
   padding: .5rem 1rem;
   border-radius: 5px;
 }
-p{
+span{
   color:white;
+  background-color:rgb(25, 67, 87) ;
+  padding: .4rem 1.4rem;
+  border-radius: 12px;
+  margin-left: .5rem;
+  font-size: 1rem;
+}
+p{
+  color: white;
 }
