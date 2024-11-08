@@ -8,6 +8,7 @@ const socket = io.connect("http://localhost:8000");    //better approach with ke
 function App() {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
+  const username = nanoid()
   
   const sendChat = (e) => {
     e.preventDefault();
